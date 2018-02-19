@@ -16,7 +16,7 @@ app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 # init MYSQL
 mysql = MySQL(app)
 
-@app.route('/a',methods=['GET','POST'])
+@app.route('/',methods=['GET','POST'])
 def index():
     if request.method == 'POST':
         tableno=request.form['tableno']
