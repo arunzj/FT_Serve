@@ -30,9 +30,11 @@ def index():
             dcode = record['code']
             code=long(code)
             if dcode == code:
-                return render_template('welcome.html')
+                msg="<h1>success</h1>"
+                return render_template('msg.html',msg=msg)
             else:
-                return render_template('msg2.html')
+                msg = "<h1>Wrong Password...!</h1>"
+                return render_template('msg.html',msg=msg)
 
 
 
