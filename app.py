@@ -11,7 +11,7 @@ app = Flask(__name__)
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = '04812340484'
-app.config['MYSQL_DB'] = 'ros'
+app.config['MYSQL_DB'] = 'qserve'
 app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 # init MYSQL
 mysql = MySQL(app)
@@ -28,14 +28,18 @@ def index():
         if result > 0:
             record = cur.fetchone()
             dcode = record['code']
-            code=long(code)
+            
             if dcode == code:
                 
                 return render_template('customer.html')
             else:
-                msg = "<h1>Wrong Password...!</h1>"
-                return render_template('msg.html',msg=msg)
+                flash('wrong password', 'danger')
+                return render_template('index.html')
 
+        else:
+
+            flash('Invalid username or password', 'danger')
+            return render_template('index.html')
 
 
             
