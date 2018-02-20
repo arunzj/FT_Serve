@@ -30,8 +30,8 @@ def index():
             dcode = record['code']
             
             if dcode == code:
-                
-                return render_template('customer.html')
+
+                return redirect(url_for('customer'))
             else:
                 flash('wrong password', 'danger')
                 return render_template('index.html')
@@ -46,7 +46,9 @@ def index():
 
     return render_template('index.html')
 
-
+@app.route('/customer',methods=['GET','POST'])
+def customer():
+    return render_template('customer/customer.html')
 
 #main
 if __name__ == '__main__':
