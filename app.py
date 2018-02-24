@@ -13,6 +13,7 @@ app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = '04812340484'
 app.config['MYSQL_DB'] = 'qserve'
 app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
+
 # init MYSQL
 mysql = MySQL(app)
 
@@ -30,7 +31,8 @@ def index():
             dcode = record['code']
             
             if dcode == code:
-
+                session['table_no'] = tableno
+                
                 return redirect(url_for('customer'))
             else:
                 flash('wrong password', 'danger')
@@ -48,7 +50,7 @@ def index():
 
 @app.route('/customer',methods=['GET','POST'])
 def customer():
-    return render_template('customer/customer.html')
+    return render_template('customer/category1.html')
 
 #main
 if __name__ == '__main__':
