@@ -52,6 +52,18 @@ def index():
 def customer():
     return render_template('customer/category1.html')
 
+#categories
+@app.route('/customer/category/<string:id>',methods=['GET','POST'])
+def customerx(id):
+    if id == 1:
+        return render_template('customer/category1.html')
+
+    elif id == 2:
+        return render_template('customer/category2.html')
+
+    else:
+        return render_template('customer/category3.html')  
+    
 #main
 if __name__ == '__main__':
     app.secret_key='secret123'
