@@ -50,7 +50,7 @@ def index():
 
 @app.route('/customer',methods=['GET','POST'])
 def customer():
-    return render_template('customer/customer.html')
+    return render_template('customer/category1.html')
 
 #main
 if __name__ == '__main__':
