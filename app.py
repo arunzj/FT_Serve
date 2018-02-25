@@ -60,18 +60,22 @@ def customer():
 def customer(id):
 
     if int(id) == 3:
-        
-        return render_template('customer/category3.html')
+        cur = mysql.connection.cursor()
+        result=cur.execute("select * from items where category='burger'")
+        items=cur.fetchall()
+        return render_template('customer/category3.html',items=items)
         
 
     elif int(id) == 2:
-
-        return render_template('customer/category2.html')
+        cur = mysql.connection.cursor()
+        result=cur.execute("select * from items where category ='salad'")
+        items=cur.fetchall()
+        return render_template('customer/category2.html',items=items)
 
     else:
           
         cur = mysql.connection.cursor()
-        result=cur.execute("select * from items")
+        result=cur.execute("select * from items where category ='starter'")
         items=cur.fetchall()
         return render_template('customer/category1.html',items=items)
 #main
