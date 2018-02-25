@@ -50,15 +50,21 @@ def index():
 
 @app.route('/customer',methods=['GET','POST'])
 def customer():
-    return render_template('customer/category1.html')
+    cur = mysql.connection.cursor()
+    result=cur.execute("select * from items")
+    items=cur.fetchall()
+    return render_template('customer/category1.html',items=items)
 
 #categories
 @app.route('/customer/category/<string:id>',methods=['GET','POST'])
 def customerx(id):
-    if id == 1:
-        return render_template('customer/category1.html')
 
-    elif id == 2:
+    if int(id) == 1:
+        
+        return customer()
+
+    elif int(id) == 2:
+
         return render_template('customer/category2.html')
 
     else:
