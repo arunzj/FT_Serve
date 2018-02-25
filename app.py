@@ -33,7 +33,7 @@ def index():
             if dcode == code:
                 session['table_no'] = tableno
                 
-                return redirect(url_for('customer',id=1))
+                return redirect(url_for('customer',id='starter'))
             else:
                 flash('wrong password', 'danger')
                 return render_template('index.html')
@@ -59,25 +59,12 @@ def customer():
 @app.route('/customer/category/<string:id>',methods=['GET','POST'])
 def customer(id):
 
-    if int(id) == 3:
+    
         cur = mysql.connection.cursor()
-        result=cur.execute("select * from items where category='burger'")
+        result=cur.execute("select * from items where category=%s",[id])
         items=cur.fetchall()
-        return render_template('customer/category3.html',items=items)
+        return render_template('customer/category.html',items=items)
         
-
-    elif int(id) == 2:
-        cur = mysql.connection.cursor()
-        result=cur.execute("select * from items where category ='salad'")
-        items=cur.fetchall()
-        return render_template('customer/category2.html',items=items)
-
-    else:
-          
-        cur = mysql.connection.cursor()
-        result=cur.execute("select * from items where category ='starter'")
-        items=cur.fetchall()
-        return render_template('customer/category1.html',items=items)
 #main
 if __name__ == '__main__':
     app.secret_key='secret123'
