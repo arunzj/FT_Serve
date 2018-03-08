@@ -64,6 +64,16 @@ def customer(id):
         result=cur.execute("select * from items where category=%s",[id])
         items=cur.fetchall()
         return render_template('customer/category.html',items=items)
+
+#test
+@app.route('/test',methods=['GET','POST'])
+def test():
+    return render_template('modal.html')
+
+#mangae section
+@app.route('/manage',methods=['GET','POST'])
+def manage():
+    return render_template('manage.html')
         
 #main
 if __name__ == '__main__':
