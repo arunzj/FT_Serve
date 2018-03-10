@@ -35,12 +35,12 @@ def index():
                 
                 return redirect(url_for('customer',id='starter'))
             else:
-                flash('wrong password', 'danger')
+                flash('wrong password',category='danger')
                 return render_template('index.html')
 
         else:
 
-            flash('Invalid username or password', 'danger')
+            flash('Invalid username or password',category='danger')
             return render_template('index.html')
 
 

@@ -1,4 +1,7 @@
 function showText(id)
 {
-    document.getElementById(id).style.display="block";
+    console.log("HELLO");
+   // var uid = id[5:]
+    
+    //document.getElementById(id).style.display="block";
 }

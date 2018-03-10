@@ -33,17 +33,19 @@
   <!--for loop-->
   <div class="row">
   {%for item in items%}
-<div class="col-lg-4 col-md-6 mb-4">
+
+<!--item DIV<div id="{{item.item_ID|string}}">-->
+  <div class="col-lg-4 col-md-6 mb-4">
         <div class="card h-100">
           <a href="#"><img class="card-img-top" src="{{item.picture}}" alt="noimage"></a>
           <div class="card-body">
             <h4 class="card-title">
-              <a href="#">{{item.name}}</a>
+              <a id="m1" href="javascript:showText(this.id);">{{item.name}}</a>
             </h4>
             <h5>$ {{item.price}}</h5>
             <p class="card-text">{{item.description}}</p>
           </div>
-          <div style=>
+          <div id="{{item.item_ID}}" style="display:none;">
           <form method="post" action="">
               <input type="number" name="quan">
               <br/>              
@@ -57,12 +59,13 @@
           </div>
         </div>
       </div>
+<!--item DIV  </div> -->
     {%endfor%}
 
   </div>
   <!-- /.col-lg-9 -->
 </div>
-
+<script src="/static/js/customer.js"></script>
 
 
 {%endblock%}
