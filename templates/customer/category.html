@@ -46,7 +46,8 @@
             <p class="card-text">{{item.description}}</p>
           </div>
           <div id="{{item.item_ID}}" style="display:none;">
-          <form method="post" action="">
+          <form method="post" action="/customer/additem">
+            <input name="item_added"type="hidden" value="{{item.item_ID}}">
               <input type="number" name="quan">
               <br/>              
               <br/>
