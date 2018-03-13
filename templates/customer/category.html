@@ -30,10 +30,11 @@
         <span class="sr-only">Next</span>
       </a>
     </div>
+    {%include 'includes/_messages.html'%}
   <!--for loop-->
   <div class="row">
+  
   {%for item in items%}
-
 <!--item DIV<div id="{{item.item_ID|string}}">-->
   <div class="col-lg-4 col-md-6 mb-4">
         <div class="card h-100">
@@ -45,9 +46,13 @@
             <h5>$ {{item.price}}</h5>
             <p class="card-text">{{item.description}}</p>
           </div>
+          {% if msg %}
+          <div class="alert alert-success">{{msg}}</div>
+          {% endif %}
           <div id="{{item.item_ID}}" style="display:none;">
-          <form method="post" action="/customer/additem">
-            <input name="item_added"type="hidden" value="{{item.item_ID}}">
+          <form method="post" action="/customer/category/additem">
+              <input name="category"type="hidden" value="{{item.category}}"> 
+              <input name="item_added"type="hidden" value="{{item.item_ID}}">
               <input type="number" name="quan">
               <br/>              
               <br/>

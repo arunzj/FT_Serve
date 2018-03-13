@@ -57,24 +57,29 @@ def customer():
 
 #categories
 @app.route('/customer/category/<string:id>',methods=['GET','POST'])
-def customer(id):
+def customer(id,msg=None):
 
-    
-        cur = mysql.connection.cursor()
-        result=cur.execute("select * from items where category=%s",[id])
-        items=cur.fetchall()
-        return render_template('customer/category.html',items=items)
+    cur = mysql.connection.cursor()
+    result=cur.execute("select * from items where category=%s",[id])
+    items=cur.fetchall()
+    return render_template('customer/category.html',items=items,msg=msg)
 
 #test
 @app.route('/test',methods=['GET','POST'])
 def test():
     return render_template('modal.html')
 
-#mangae section
-@app.route('/manage',methods=['GET','POST'])
-def manage():
-    return render_template('manage.html')
-        
+#Add Item
+@app.route('/customer/category/additem',methods=['GET','POST'])
+def additem():
+    if request.method == 'POST':
+        quan=request.form['quan']
+        item_ID=request.form['item_added']
+        cat=request.form['category']
+        flash("Successfully Added",category='success')
+        return redirect(url_for('customer',id=cat))
+    else:
+        return "HEllO"
 #main
 if __name__ == '__main__':
     app.secret_key='secret123'
