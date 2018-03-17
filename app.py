@@ -32,21 +32,22 @@ def index():
             
             if dcode == code:
                 session['table_no'] = tableno
-                
+                session['customer_ID'] = 333
+
                 return redirect(url_for('customer',id='starter'))
             else:
                 flash('wrong password',category='danger')
-                return render_template('index.html')
+                return render_template('customer/index.html')
 
         else:
 
             flash('Invalid username or password',category='danger')
-            return render_template('index.html')
+            return render_template('customer/index.html')
 
 
             
 
-    return render_template('index.html')
+    return render_template('customer/index.html')
 
 '''@app.route('/customer',methods=['GET','POST'])
 def customer():
@@ -76,6 +77,10 @@ def additem():
         quan=request.form['quan']
         item_ID=request.form['item_added']
         cat=request.form['category']
+        customer_ID = session['customer_ID']
+        cur=mysql.connection.cursor()
+        cur.execute("INSERT INTO item_ordered(item_ID,quantity,customer_ID) VALUES(%s,%s,%s)",[item_ID,quan,customer_ID])
+        mysql.connection.commit()
         flash("Successfully Added",category='success')
         return redirect(url_for('customer',id=cat))
     else:
