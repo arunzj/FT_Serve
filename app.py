@@ -17,7 +17,43 @@ app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 # init MYSQL
 mysql = MySQL(app)
 
+
+#Login Form (Main)
 @app.route('/',methods=['GET','POST'])
+def index():
+    if request.method == 'POST':
+        username=request.form['text1']
+        password=request.form['password']
+        cur=mysql.connection.cursor()
+        result = cur.execute("SELECT * FROM tables WHERE table_no= %s ",[])
+        
+
+        if result > 0:
+            record = cur.fetchone()
+            dcode = record['code']
+            
+            if dcode == code:
+                session['table_no'] = tableno
+                session['customer_ID'] = 333
+
+                return redirect(url_for('customer',id='starter'))
+            else:
+                flash('wrong password',category='danger')
+                return render_template('customer/index.html')
+
+        else:
+
+            flash('Invalid username or password',category='danger')
+            return render_template('customer/index.html')
+
+
+            
+
+    return render_template('index.html')
+
+
+#category root
+'''@app.route('/',methods=['GET','POST'])
 def index():
     if request.method == 'POST':
         tableno=request.form['tableno']
@@ -44,17 +80,8 @@ def index():
             flash('Invalid username or password',category='danger')
             return render_template('customer/index.html')
 
+    return render_template('customer/index.html')'''
 
-            
-
-    return render_template('customer/index.html')
-
-'''@app.route('/customer',methods=['GET','POST'])
-def customer():
-    cur = mysql.connection.cursor()
-    result=cur.execute("select * from items")
-    items=cur.fetchall()
-    return render_template('customer/category1.html',items=items)'''
 
 #categories
 @app.route('/customer/category/<string:id>',methods=['GET','POST'])
@@ -68,7 +95,7 @@ def customer(id,msg=None):
 #test
 @app.route('/test',methods=['GET','POST'])
 def test():
-    return render_template('modal.html')
+    return render_template('index.html')
 
 #Add Item
 @app.route('/customer/category/additem',methods=['GET','POST'])
