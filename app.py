@@ -25,36 +25,35 @@ def index():
         username=request.form['text1']
         password=request.form['password']
         cur=mysql.connection.cursor()
-        result = cur.execute("SELECT * FROM tables WHERE table_no= %s ",[])
+        result = cur.execute("SELECT * FROM users WHERE user_name= %s ",[username])
         
-
         if result > 0:
             record = cur.fetchone()
-            dcode = record['code']
-            
-            if dcode == code:
-                session['table_no'] = tableno
-                session['customer_ID'] = 333
-
-                return redirect(url_for('customer',id='starter'))
+            passwordx = record['password']
+            #if password correct
+            if passwordx == password:
+                #if it is service
+                if record['type'] = 'service':
+                    session['type'] = record['type']
+                    return redirect(url_for('table'))
+                else:
+                    return 'Under Construction'
+        #if password incorrect   
             else:
-                flash('wrong password',category='danger')
-                return render_template('customer/index.html')
-
+                msg='wrong password'
+                return render_template('msg.html',msg=msg)
+    #if username wrong
         else:
 
-            flash('Invalid username or password',category='danger')
-            return render_template('customer/index.html')
-
-
-            
+            return 'no user'
+ 
 
     return render_template('index.html')
 
 
 #category root
-'''@app.route('/',methods=['GET','POST'])
-def index():
+@app.route('/customer',methods=['GET','POST'])
+def table():
     if request.method == 'POST':
         tableno=request.form['tableno']
         code=request.form['code']
@@ -80,7 +79,7 @@ def index():
             flash('Invalid username or password',category='danger')
             return render_template('customer/index.html')
 
-    return render_template('customer/index.html')'''
+    return render_template('customer/index.html')
 
 
 #categories
