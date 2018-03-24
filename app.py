@@ -33,8 +33,9 @@ def index():
             #if password correct
             if passwordx == password:
                 #if it is service
-                if record['type'] = 'service':
+                if record['type'] == 'service':
                     session['type'] = record['type']
+
                     return redirect(url_for('table'))
                 else:
                     return 'Under Construction'
@@ -67,8 +68,14 @@ def table():
             
             if dcode == code:
                 session['table_no'] = tableno
-                session['customer_ID'] = 333
 
+                cur.execute("INSERT INTO customers(table_no) VALUE(%s)",[tableno])
+                mysql.connection.commit()
+                cur.execute("SELECT LAST_INSERT_ID()")
+                cusid=cur.fetchone()
+                
+                session['cusid'] = cusid['LAST_INSERT_ID()']
+                msg = session['cusid']
                 return redirect(url_for('customer',id='starter'))
             else:
                 flash('wrong password',category='danger')
@@ -94,7 +101,7 @@ def customer(id,msg=None):
 #test
 @app.route('/test',methods=['GET','POST'])
 def test():
-    return render_template('index.html')
+    return render_template('under_c.html')
 
 #Add Item
 @app.route('/customer/category/additem',methods=['GET','POST'])
@@ -103,7 +110,7 @@ def additem():
         quan=request.form['quan']
         item_ID=request.form['item_added']
         cat=request.form['category']
-        customer_ID = session['customer_ID']
+        customer_ID = session['cusid']
         cur=mysql.connection.cursor()
         cur.execute("INSERT INTO item_ordered(item_ID,quantity,customer_ID) VALUES(%s,%s,%s)",[item_ID,quan,customer_ID])
         mysql.connection.commit()
