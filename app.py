@@ -111,8 +111,11 @@ def additem():
         item_ID=request.form['item_added']
         cat=request.form['category']
         customer_ID = session['cusid']
+        item_price = float(request.form['item_price'])
+        
         cur=mysql.connection.cursor()
         cur.execute("INSERT INTO item_ordered(item_ID,quantity,customer_ID) VALUES(%s,%s,%s)",[item_ID,quan,customer_ID])
+        cur.execute("UPDATE customers set bill_amount = bill_amount + %s WHERE customer_ID = %s",[item_price,customer_ID])
         mysql.connection.commit()
         flash("Successfully Added",category='success')
         return redirect(url_for('customer',id=cat))
