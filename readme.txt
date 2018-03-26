@@ -1,1 +1,1 @@
-hellovvv
+﻿Hello, Printer off akki eduu

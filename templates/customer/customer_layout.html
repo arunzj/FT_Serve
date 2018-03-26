@@ -9,7 +9,7 @@
     <meta name="author" content="">
 
     <title>Shop Homepage - Start Bootstrap Template</title>
-
+    <link rel="icon" href="/static/images/favicon.ico">
     <!-- Bootstrap core CSS -->
     <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
@@ -17,28 +17,28 @@
     <link href="/static/css/shop-homepage.css" rel="stylesheet">
 
   </head>
-
-  <body style="background:transparent url('/static/images/cover.jpeg'); background-attachment: fixed;background-blend-mode: darken;background-size:cover; ">
+  <!--style="background:transparent url('/static/images/cover2.jpg'); background-attachment: fixed;background-blend-mode: darken;background-size:cover;" -->
+  <body>
 
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container">
-        <a class="navbar-brand" href="#">Q Serve</a>
+        <a class="navbar-brand" href="{{url_for('customer',id='starter')}}">Q Serve</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="#">Home
+              <a class="nav-link" href="{{ url_for('customer',id='starter') }}">Home
                 <span class="sr-only">(current)</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Bill</a>
+              <a class="nav-link" href="{{url_for('test')}}">Our Team</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Order Status</a>
+              <a class="nav-link" href="{{url_for('orderstatus')}}">Order Status</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Contact</a>
@@ -48,41 +48,23 @@
       </div>
     </nav>
 
-    <!-- Page Content -->
-    <div class="imager container">
-
-      <div class="row">
-
-        <div class="col-lg-3">
-
-          <h5 class="my-4 list-group-item">Table <span style="color:crimson">{{session['table_no']}}</span></h5>
-          <h5 class="my-4 list-group-item">Customer <span style="color:green">{{session['cusid']}}</span></h5>
-          <div class="list-group">
-            
-            <a href="/customer/category/starter" class="list-group-item">STARTERS</a>
-            <a href="/customer/category/salad" class="list-group-item">SALAD</a>
-            <a href="/customer/category/burger" class="list-group-item">BURGER</a>
-          </div>
-
-        </div>
+    
         <!-- /.col-lg-3 -->
            {%block body%}   
         
            {%endblock%}
 
-          </div>
-          <!-- /.row -->
-          
-          </div>
-          <!-- /.container -->       
+                 
     <!-- Footer -->
-    <footer class="py-5 bg-dark">
+    
+    <footer style="margin-top:35%;" class="py-5 bg-dark">
       <div class="container">
         <p class="m-0 text-center text-white">Copyright &copy; Your Website 2017</p>
       </div>
       <!-- /.container -->
+    
     </footer>
-
+ 
     <!-- Bootstrap core JavaScript -->
     <script src="/static/vendor/jquery/jquery.min.js"></script>
     <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

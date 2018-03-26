@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Shop Homepage - Start Bootstrap Template</title>
+    <link rel="icon" href="/static/images/favicon.ico">
+    <!-- Bootstrap core CSS -->
+    <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/static/css/shop-homepage.css" rel="stylesheet">
+
+  </head>
+  <!--style="background:transparent url('/static/images/cover2.jpg'); background-attachment: fixed;background-blend-mode: darken;background-size:cover;" -->
+  <body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="{{url_for('customer',id='starter')}}">Q Serve</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="{{ url_for('customer',id='starter') }}">Home
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{url_for('test')}}">Our Team</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{url_for('orderstatus')}}">Order Status</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    
+    <!-- /.col-lg-3 -->
+    <!--Body-->
+    <table class="table table-striped table-hover">
+        <tr>
+            <th>Name</th>
+            <th>Quantity</th>
+            <th>Time</th>
+            <th>Status</th>
+            <th>Table No</th>
+        </tr>
+        {% for record in records%}
+        <tr>
+         <td class="text-success">{{record.name}}</td>
+         <td>{{record.quantity}}</td>
+         <td class="text-primary">{{record.time}}</td>
+         <td>{{record.status}}</td>
+         <td class="text-danger">001</td>
+         <td><button  type="submit" class="btn btn-primary btn-sm">Update Status</button></td>
+         
+        </tr> 
+        {%endfor%}
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>Total Amount:</td>
+            <td>{{total}}</td>
+        </tr>
+       </table>
+
+                 
+    <!-- Footer -->
+    
+    <footer style="margin-top:35%;" class="py-5 bg-dark">
+      <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2017</p>
+      </div>
+      <!-- /.container -->
+    
+    </footer>
+ 
+    <!-- Bootstrap core JavaScript -->
+    <script src="/static/vendor/jquery/jquery.min.js"></script>
+    <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  </body>
+
+</html>

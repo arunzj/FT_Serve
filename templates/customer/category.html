@@ -1,7 +1,23 @@
 {%extends 'customer/customer_layout.html'%}
 
 {%block body%}
+<!-- Page Content -->
+<div class="imager container">
 
+  <div class="row">
+
+    <div class="col-lg-3">
+
+      <h5 class="my-4 list-group-item">Table <span style="color:crimson">{{session['table_no']}}</span></h5>
+      <h5 class="my-4 list-group-item">Customer <span style="color:green">{{session['cusid']}}</span></h5>
+      <div class="list-group">
+        
+        <a href="/customer/category/starter" class="list-group-item">STARTERS</a>
+        <a href="/customer/category/salad" class="list-group-item">SALAD</a>
+        <a href="/customer/category/burger" class="list-group-item">BURGER</a>
+      </div>
+
+    </div>
 <div class="col-lg-9">
 
     <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
@@ -73,6 +89,10 @@
   <!-- /.col-lg-9 -->
 </div>
 <script src="/static/js/customer.js"></script>
+</div>
+<!-- /.row -->
 
+</div>
+<!-- /.container -->
 
 {%endblock%}

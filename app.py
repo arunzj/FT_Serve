@@ -35,8 +35,11 @@ def index():
                 #if it is service
                 if record['type'] == 'service':
                     session['type'] = record['type']
-
+                    session['user_name']=username
                     return redirect(url_for('table'))
+                elif record['type'] == 'chef':
+                    session['user_name']=username
+                    return redirect(url_for('chef'))
                 else:
                     return 'Under Construction'
         #if password incorrect   
@@ -121,7 +124,35 @@ def additem():
         return redirect(url_for('customer',id=cat))
     else:
         return "HEllO"
+
+#Order Status
+@app.route('/customer/orderstatus')
+def orderstatus():
+    cur = mysql.connection.cursor()
+    cusid = session['cusid']
+
+    result = cur.execute("SELECT items.name,item_ordered.quantity,item_ordered.status,items.price FROM item_ordered,items WHERE items.item_ID = item_ordered.item_ID AND item_ordered.customer_ID = %s",[cusid])
+    if result>0:
+        total=0
+        records = cur.fetchall()
+        
+        return render_template('customer/order_status.html',records=records,total= total)
+
+    else:
+        error="No Orders Yet"
+        return render_template('customer/order_status.html',error = error)
+    
+# Chef Session
+#
+@app.route('/chef',methods=['GET','POST'])
+def chef():
+    cur = mysql.connection.cursor()
+    result = cur.execute("SELECT items.name,item_ordered.quantity,item_ordered.time,item_ordered.status FROM items,item_ordered WHERE item_ordered.item_ID = items.item_ID AND item_ordered.status <> 'servered'" )
+    records=cur.fetchall()
+    return render_template('chef/chef.html',records=records)
+
 #main
 if __name__ == '__main__':
+
     app.secret_key='secret123'
     app.run(debug=True)

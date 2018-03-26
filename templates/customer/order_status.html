@@ -1,0 +1,39 @@
+{%extends 'customer/customer_layout.html'%}
+
+{%block body%}
+
+{% if error %}
+  <div class="alert alert-danger">{{error}}</div>
+{% else %}
+ {% set total = 0 %}
+<table class="table table-striped table-hover">
+        <tr>
+            <th>Name</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Status</th>
+            <th>Amount</th>
+        </tr>
+        {% for record in records%}
+        <tr>
+         <td class="text-success">{{record.name}}</td>
+         <td>{{record.quantity}}</td>
+         <td class="text-primary">{{record.price}}</td>
+         <td>{{record.status}}</td>
+         <td class="text-danger">{{record.price*record.quantity}}</td>
+         <td><button class="btn btn-primary btn-sm">Update</button></td>
+         
+        </tr> 
+        {%endfor%}
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>Total Amount:</td>
+            <td>{{total}}</td>
+        </tr>
+       </table>
+
+{% endif %}
+
+{%endblock%}
