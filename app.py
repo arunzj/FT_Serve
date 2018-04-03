@@ -38,8 +38,12 @@ def index():
                     session['user_name']=username
                     return redirect(url_for('table'))
                 elif record['type'] == 'chef':
+                    session['type'] = record['type']
                     session['user_name']=username
                     return redirect(url_for('chef'))
+                elif record['type'] == 'accounts':
+                    session['user_name']=username
+                    return redirect(url_for('accounts'))
                 else:
                     return 'Under Construction'
         #if password incorrect   
@@ -53,6 +57,13 @@ def index():
  
 
     return render_template('index.html')
+
+#Logout
+@app.route('/logout',methods=['GET','POST'])
+def logout():
+    session.clear()
+    return redirect(url_for('index'))
+
 
 
 #category root
@@ -104,7 +115,7 @@ def customer(id,msg=None):
 #test
 @app.route('/test',methods=['GET','POST'])
 def test():
-    return render_template('under_c.html')
+    return render_template('accounts/accounts.html')
 
 #Add Item
 @app.route('/customer/category/additem',methods=['GET','POST'])
@@ -143,13 +154,64 @@ def orderstatus():
         return render_template('customer/order_status.html',error = error)
     
 # Chef Session
-#
+#Preparing
 @app.route('/chef',methods=['GET','POST'])
 def chef():
     cur = mysql.connection.cursor()
-    result = cur.execute("SELECT items.name,item_ordered.quantity,item_ordered.time,item_ordered.status FROM items,item_ordered WHERE item_ordered.item_ID = items.item_ID AND item_ordered.status <> 'servered'" )
+    result = cur.execute("SELECT items.name,item_ordered.quantity,item_ordered.time,item_ordered.status,item_ordered.order_ID,item_ordered.customer_ID FROM items,item_ordered WHERE item_ordered.item_ID = items.item_ID AND item_ordered.status = 'preparing'" )
     records=cur.fetchall()
+    
     return render_template('chef/chef.html',records=records)
+
+#Ready
+@app.route('/chef/ready',methods=['GET','POST'])
+def chefr():
+    cur = mysql.connection.cursor()
+    result = cur.execute("SELECT items.name,item_ordered.quantity,item_ordered.time,item_ordered.status,item_ordered.order_ID,item_ordered.customer_ID FROM items,item_ordered WHERE item_ordered.item_ID = items.item_ID AND item_ordered.status = 'ready' " )
+    records=cur.fetchall()
+    
+    return render_template('chef/chef.html',records=records)
+
+#Served
+@app.route('/chef/served',methods=['GET','POST'])
+def chefs():
+    cur = mysql.connection.cursor()
+    result = cur.execute("SELECT items.name,item_ordered.quantity,item_ordered.time,item_ordered.status,item_ordered.order_ID,item_ordered.customer_ID FROM items,item_ordered WHERE item_ordered.item_ID = items.item_ID AND item_ordered.status = 'served'" )
+    records=cur.fetchall()
+    
+    return render_template('chef/chef.html',records=records)
+
+
+#update status by chef
+@app.route('/chef/update_prep/<string:id>',methods=['POST'])
+def update_prep(id):
+    cur=mysql.connection.cursor()
+    cur.execute("UPDATE item_ordered SET status = 'ready' WHERE order_ID = %s ",[id])
+    mysql.connection.commit()
+    return redirect(url_for('chef'))
+
+#update staus by chef
+#update status by chef
+@app.route('/chef/update_ready/<string:id>',methods=['POST'])
+def update_ready(id):
+    cur=mysql.connection.cursor()
+    cur.execute("UPDATE item_ordered SET status = 'served' WHERE order_ID = %s ",[id])
+    mysql.connection.commit()
+    return redirect(url_for('chefr'))
+#Accounts
+@app.route('/accounts',methods=['GET','POST'])
+def accounts():
+    if request.method == 'POST':
+        cus_ID=request.form['cus_ID']
+        cur=mysql.connection.cursor()
+        result=cur.execute('SELECT customer_ID,name,bill_amount FROM customers WHERE customer_ID=%s',[cus_ID])
+        record=cur.fetchone()
+        return render_template('accounts/accounts.html',record=record)
+
+    return render_template('accounts/accounts.html')
+
+
+
 
 #main
 if __name__ == '__main__':

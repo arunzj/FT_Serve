@@ -8,11 +8,12 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Welcome Chef</title>
+    <title>Welcome</title>
     <link rel="icon" href="/static/images/favicon.ico">
     <!-- Bootstrap core CSS -->
     <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
+     <!--Main Style-->
+     <link href="/static/css/accounts_style.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="/static/css/shop-homepage.css" rel="stylesheet">
 
@@ -51,39 +52,38 @@
     
     <!-- /.col-lg-3 -->
     <!--Body-->
-    <table class="table table-striped table-hover">
-        <tr>
-            <th>Name</th>
-            <th>Quantity</th>
-            <th>Time</th>
-            <th>Status</th>
-            <th>Customer ID</th>
-        </tr>
-        {% for record in records%}
-        <tr>
-         <td class="text-success">{{record.name}}</td>
-         <td>{{record.quantity}}</td>
-         <td class="text-primary">{{record.time}}</td>
-         <td>{{record.status}}</td>
-         <td class="text-danger">{{record.customer_ID}}</td>
+    <div class=" form-group fitem" id="txt">
+    <form class="form-inline" method="POST" action="">
+      <div class="form-group">
+        <label style="color:crimson;">Customer ID</label>&nbsp &nbsp &nbsp
+      <input class="form-control" placeholder="Enter Customer ID" type="text" name="cus_ID" id="text1">
+      </div>
+      &nbsp &nbsp &nbsp
+      <div class="form-group">
+          <button type="submit" class="form-control btn btn-primary">SUBMIT</button>
+      </div>
+    </form>
+  </div>
+  {% if record %}
+  <script>
+    document.getElementById('txt').style.display='none'
+  </script>
+   <div>
+     <table class="table table-bordered">
+       <tr>
+         <th>Customer ID</th>
+         <th>Name</th>
+         <th>Bill Amount</th>
+       </tr>
+       <tr>
+         <td>{{record.customer_ID}}</td>
+         <td>{{record.name}}</td>
+         <td>$ {{record.bill_amount}}</td>
+       </tr>
+     </table>
+   </div>
+   {%endif%}
 
-           {% if record.status == 'preparing' %}
-         <form method="post" action="/chef/update_prep/{{record.order_ID}}" >
-         <td><button  type="submit" class="btn btn-primary btn-sm">Set as Ready</button></td>
-        </form>
-           {%elif record.status == 'ready' %}
-           <form method="post" action="/chef/update_ready/{{record.order_ID}}" >
-            <td><button  type="submit" class="btn btn-success btn-sm">Set as Served</button></td>
-           </form>
-           {%else%}
-           {{pass}}
-           {%endif%}
-        </tr> 
-        {%endfor%}
-        
-       </table>
-
-                 
     <!-- Footer -->
     
     <footer style="margin-top:35%;" class="py-5 bg-dark">
