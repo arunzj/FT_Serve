@@ -68,6 +68,26 @@
   <script>
     document.getElementById('txt').style.display='none'
   </script>
+<div>
+<table class="table table-bordered">
+<tr>
+<th>Name</th>
+<th>Quantity</th>
+<th>Price</th>
+<th>Status</th>
+</tr>
+{%for r in xrecord%}
+<tr>
+  <td>{{r.name}}</td>
+  <td>{{r.quantity}}</td>
+  <td>{{r.price}}</td>
+  <td>{{r.status}}</td>
+</tr>
+{%endfor%}
+</table>
+
+</div>
+
    <div>
      <table class="table table-bordered">
        <tr>

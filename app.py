@@ -121,15 +121,15 @@ def test():
 @app.route('/customer/category/additem',methods=['GET','POST'])
 def additem():
     if request.method == 'POST':
-        quan=request.form['quan']
+        quan=float(request.form['quan'])
         item_ID=request.form['item_added']
         cat=request.form['category']
         customer_ID = session['cusid']
         item_price = float(request.form['item_price'])
-        
+        amt = item_price * quan
         cur=mysql.connection.cursor()
         cur.execute("INSERT INTO item_ordered(item_ID,quantity,customer_ID) VALUES(%s,%s,%s)",[item_ID,quan,customer_ID])
-        cur.execute("UPDATE customers set bill_amount = bill_amount + %s WHERE customer_ID = %s",[item_price,customer_ID])
+        cur.execute("UPDATE customers set bill_amount = bill_amount + %s WHERE customer_ID = %s",[amt,customer_ID])
         mysql.connection.commit()
         flash("Successfully Added",category='success')
         return redirect(url_for('customer',id=cat))
@@ -206,7 +206,10 @@ def accounts():
         cur=mysql.connection.cursor()
         result=cur.execute('SELECT customer_ID,name,bill_amount FROM customers WHERE customer_ID=%s',[cus_ID])
         record=cur.fetchone()
-        return render_template('accounts/accounts.html',record=record)
+        cur.execute('SELECT items.name,item_ordered.quantity,item_ordered.status,items.price FROM items,item_ordered WHERE customer_ID=%s AND item_ordered.item_ID = items.item_ID',[cus_ID])
+        xrecord=cur.fetchall()
+
+        return render_template('accounts/accounts.html',record=record,xrecord=xrecord)
 
     return render_template('accounts/accounts.html')
 
