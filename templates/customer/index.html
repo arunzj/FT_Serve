@@ -1,54 +1,112 @@
-
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<!-- Meta tags -->
-	<title>Restaurent Oredering System</title>
-	<meta name="keywords" content="Winter Login Form Responsive widget, Flat Web Templates, Android Compatible web template, 
-	Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<!-- stylesheets -->
-	<link rel="stylesheet" href="/static/css/font-awesome.css">
-	<link rel="stylesheet" href="/static/css/style.css">
-	<!-- google fonts  -->
-	<link href="//fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-	<link href="//fonts.googleapis.com/css?family=Raleway:400,500,600,700" rel="stylesheet">
-	<link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-</head>
-<body>
-	<div class="agile-login">
-		<h1>R<small>estaurent</small> O<small>redering</small> S<small>ystem</small></h1>
-		
-		<div class="wrapper">
-				{%include 'includes/_messages.html'%}
-			<h2>Sign In</h2>
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Welcome Chef</title>
+    <link rel="icon" href="/static/images/favicon.ico">
+    <!-- Bootstrap core CSS -->
+    <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/static/css/shop-homepage.css" rel="stylesheet">
+     </head>
+  <!--style="background:transparent url('/static/images/cover2.jpg'); background-attachment: fixed;background-blend-mode: darken;background-size:cover;" -->
+  <body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="/chef"> Q Serve <small>Welcome: {{session['user_name']}}</small></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="/chef">Home
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/chef/ready">To Serve</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/chef/served">Served Orders</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/logout">Logout</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    
+    <!-- /.col-lg-3 -->
+    <!--Body-->
+    <!--https://youtu.be/jV8B24rSN5o?t=1254-->
+
+
+  <!-- <div class="box1">
+    <form method="post">
+       <div class="form-group">
+      <label>Table No:</label><input tpye="text" name="tableno">
+      <label>Table No:</label><input type="text" name="code">
+      <button class= "btn btn-success" type="submit">SUBMIT</button>
+    </div>
+    </form> -->
+    <div class="wrappers">
+
+      <div class="box1">
+    <div class="wrapper">
+				
+			
 			
 			<div class="w3ls-form">
 				<form action="" method="post">
-					<label>TableNo:</label>
-					<input type="text" name="tableno" placeholder="TableNo" required/>
+					&nbsp&nbsp<label>TableNo:</label>
+					<input type="text" name="text1" placeholder="Table No" required/>
 					<label>Code:</label>
-					<input type="text" name="code" placeholder="Code" required />
+					<input type="text"  name="password" placeholder="Code" required />
 					
 					<input type="submit" value="Log In" />
-				</form>
+        </form>
+        <h1 class="hj">OR</h1>
+        <form action=""method="post">
+            <label>Customer ID:</label>
+            <input type="text"  name="cus_ID" placeholder="Customer ID" required />
+            
+            <input type="submit" value="Log In" />
+        </form>
 			</div>
-			
-			<div class="agile-icons">
-				<a href="#"><span class="fa fa-twitter" aria-hidden="true"></span></a>
-				<a href="#"><span class="fa fa-facebook"></span></a>
-				<a href="#"><span class="fa fa-pinterest-p"></span></a>
-			</div>
-		</div>
-		<br>
-		<div class="copyright">
-		<p>© 2017 Winter Login. All rights reserved | Design by <a href="www.w3layouts.com">W3layouts</a></p> 
-	</div>
-	</div>
+
 	
-	
-</body>
+  </div>
+  </div>
+  <div class="box2">
+
+  </div>
+</div>
+    <!-- Footer -->
+    
+    <footer class="py-5 bg-dark">
+      <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2017</p>
+      </div>
+      <!-- /.container -->
+    
+    </footer>
+ 
+    <!-- Bootstrap core JavaScript -->
+    <script src="/static/vendor/jquery/jquery.min.js"></script>
+    <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  </body>
+
 </html>
