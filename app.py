@@ -42,8 +42,13 @@ def index():
                     session['user_name']=username
                     return redirect(url_for('chef'))
                 elif record['type'] == 'accounts':
+                    session['type'] = record['type']
                     session['user_name']=username
                     return redirect(url_for('accounts'))
+                elif record['type'] == 'admin':
+                    session['type'] = record['type']
+                    session['user_name']=username
+                    return redirect(url_for('admin'))
                 else:
                     return 'Under Construction'
         #if password incorrect   
@@ -152,7 +157,12 @@ def orderstatus():
     else:
         error="No Orders Yet"
         return render_template('customer/order_status.html',error = error)
-    
+#admin Sesssion
+@app.route('/admin',methods=['GET','POST'])
+def admin():
+    return render_template('admin/admin.html')
+
+
 # Chef Session
 #Preparing
 @app.route('/chef',methods=['GET','POST'])

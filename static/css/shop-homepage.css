@@ -6,7 +6,7 @@
 
 body {
   padding-top: 54px;
-  background-image:url('/static/images/6cover.jpg');
+
 }
 
 @media (min-width: 992px) {
@@ -29,21 +29,19 @@ body {
   
 }
 .box1{
+  border-radius: 0.2em;
   display:grid;
   grid-template-columns:1fr 1fr 1fr;
-  background-color:rgba(19, 18, 18, 0.7);
+  background-color:rgba(19, 18, 18, 0.5);
   margin-left: 1em;
   margin-top: 1em;
   
 }
 .wrapper{
   grid-column:2/2;
+  margin-top:10%;
 }
-.box2{
-  
-  
 
-}
 
 .wrappers{
   display:grid;
@@ -52,7 +50,10 @@ body {
   
 }
 
-
+.wrapper > h2{
+ margin-left: 15%;
+ color: rgb(3, 82, 16)
+}
 
 .w3ls-form {
   display: inline-block;

@@ -16,7 +16,7 @@
      <link href="/static/css/accounts_style.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="/static/css/shop-homepage.css" rel="stylesheet">
-
+  
   </head>
   <!--style="background:transparent url('/static/images/cover2.jpg'); background-attachment: fixed;background-blend-mode: darken;background-size:cover;" -->
   <body>
@@ -69,7 +69,7 @@
     document.getElementById('txt').style.display='none'
   </script>
 <div>
-<table class="table table-bordered">
+<table class="table table-bordered table-striped">
 <tr>
 <th>Name</th>
 <th>Quantity</th>
@@ -89,7 +89,7 @@
 </div>
 
    <div>
-     <table class="table table-bordered">
+     <table class="table table-bordered text-danger">
        <tr>
          <th>Customer ID</th>
          <th>Name</th>
@@ -101,6 +101,11 @@
          <td>$ {{record.bill_amount}}</td>
        </tr>
      </table>
+   </div>
+   <div style="margin-left:45%;">
+    <table>
+      <button class="btn btn-success btn-lg">Make Payment</button>
+    </table>
    </div>
    {%endif%}
 
