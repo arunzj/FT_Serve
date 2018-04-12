@@ -2,7 +2,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Admin</title>
+<title>Admin Session</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="Glance Design Dashboard Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
@@ -31,24 +31,14 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 <link href="//fonts.googleapis.com/css?family=PT+Sans:400,400i,700,700i&amp;subset=cyrillic,cyrillic-ext,latin-ext" rel="stylesheet">
 <!--//webfonts--> 
 
-<!-- chart -->
-<script src="/static/admin/js/Chart.js"></script>
-<!-- //chart -->
 
 <!-- Metis Menu -->
 <script src="/static/admin/js/metisMenu.min.js"></script>
 <script src="/static/admin/js/custom.js"></script>
 <link href="/static/admin/css/custom.css" rel="stylesheet">
 <!--//Metis Menu -->
-<style>
-#chartdiv {
-  width: 100%;
-  height: 295px;
-}
-</style>
 
-<!-- //pie-chart --><!-- index page sales reviews visitors pie chart -->
-
+ 
 	<!-- requried-jsfiles-for owl -->
 					<link href="/static/admin/css/owl.carousel.css" rel="stylesheet">
 					<script src="/static/admin/js/owl.carousel.js"></script>
@@ -78,7 +68,7 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             </button>
-            <h1><a class="navbar-brand" href="index.html"><span class="fa fa-area-chart"></span> Glance<span class="dashboard_text">Design dashboard</span></a></h1>
+            <h1><a class="navbar-brand" href="/index.html"><span class="fa fa-area-chart"></span> Glance<span class="dashboard_text">Design dashboard</span></a></h1>
           </div>
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="sidebar-menu">
@@ -382,29 +372,22 @@ SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony
 			<div class="clearfix"> </div>	
 		</div>
 		<!-- //header-ends -->
+		<!-- main content start-->
+		{%block body%}
 		
-
+		{%endblock%}
+		
 	<!--footer-->
 	<div class="footer">
 	   <p>&copy; 2018 Glance Design Dashboard. All Rights Reserved | Design by <a href="https://w3layouts.com/" target="_blank">w3layouts</a></p>		
 	</div>
     <!--//footer-->
-
-	
+	</div>
 		
-	<!--scrolling js-->
-	<script src="js/jquery.nicescroll.js"></script>
-	<script src="js/scripts.js"></script>
-	<!--//scrolling js-->
 	
-	<!-- side nav js -->
-	<script src='/static/admin/js/SidebarNav.min.js' type='text/javascript'></script>
-	<script>
-      $('.sidebar-menu').SidebarNav()
-    </script>
-	<!-- //side nav js -->
+ 
+	<!-- //for index page weekly sales java script -->
 	
-    
 	
 	<!-- Bootstrap Core JavaScript -->
    <script src="/static/admin/js/bootstrap.js"> </script>
