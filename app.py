@@ -160,7 +160,7 @@ def orderstatus():
 #admin Sesssion
 @app.route('/admin',methods=['GET','POST'])
 def admin():
-    return render_template('admin/admin.html')
+    return render_template('admin/dashboard.html')
 
 
 # Chef Session
