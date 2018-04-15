@@ -122,7 +122,7 @@ def customer(id,msg=None):
 def test():
     return render_template('accounts/accounts.html')
 
-#Add Item
+#Add order
 @app.route('/customer/category/additem',methods=['GET','POST'])
 def additem():
     if request.method == 'POST':
@@ -161,6 +161,44 @@ def orderstatus():
 @app.route('/admin',methods=['GET','POST'])
 def admin():
     return render_template('admin/dashboard.html')
+#Add Users 
+@app.route('/admin/add_user',methods=['GET','POST'])
+def add_user():
+    if request.method=='POST':
+        name=request.form['name']
+        email=request.form['email']
+        gender=request.form['gender']
+        password=request.form['password']
+        user_type=request.form['user_type']
+        contact_no=request.form['contact_no']
+        username=request.form['username']
+        image_url ='/static/images/uploads/default1.jpg'
+        cur=mysql.connection.cursor()
+        cur.execute('INSERT INTO users VALUES(%s,%s,%s,%s,%s,%s,%s,%s)',[username,password,user_type,name,contact_no,image_url,email,gender])
+        mysql.connection.commit()
+        flash("User Successfully Added",category='success')
+        return render_template('admin/add_user.html')
+    return render_template('admin/add_user.html')
+#Add Item
+@app.route('/admin/add_item',methods=['GET','POST'])
+def add_item():
+    if request.method=='POST':
+        name=request.form['name']
+        price=request.form['price']
+        category=request.form['category']
+        description=request.form['description']
+        image='/static/images/uploads/sample3.jpg'
+
+        cur=mysql.connection.cursor()
+        cur.execute('INSERT INTO items(name,price,category,picture,description) VALUES(%s,%s,%s,%s,%s)',[name,price,category,image,description])
+        mysql.connection.commit()
+        flash("Item Successfully Added",category='success')
+
+    return render_template('admin/add_item.html')
+
+ #update user infooo
+# @app.route('/admin/update_user',methods=['GET','POST'])
+# def update_user():   
 
 
 # Chef Session

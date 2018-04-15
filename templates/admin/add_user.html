@@ -1,0 +1,137 @@
+{%extends 'admin/admin_layout.html'%}
+{%block body%}
+
+<div id="page-wrapper">
+    <div class="main-page">
+        <div class="forms">
+        
+            <div class="row">
+                <h3 class="title1">Register User :</h3>
+
+                <div class="form-three widget-shadow">
+                    <div class=" panel-body-inputin">
+                        <form class="form-horizontal" method="post" action="/admin/add_user">
+                            {%include 'includes/_messages.html'%}
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">Full Name</label>
+                                <div class="col-md-8">
+                                    <div class="input-group">							
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-envelope-o"></i>
+                                        </span>
+                                        <input name="name" type="text" class="form-control1" placeholder="Full Name">
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                    <label class="col-md-2 control-label">Email Address</label>
+                                    <div class="col-md-8">
+                                        <div class="input-group">							
+                                            <span class="input-group-addon">
+                                                <i class="fa fa-envelope-o"></i>
+                                            </span>
+                                            <input name="email" type="text" class="form-control1" placeholder="Email Address">
+                                        </div>
+                                    </div>
+                                </div>
+
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">Password</label>
+                                <div class="col-md-8">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-key"></i>
+                                        </span>
+                                        <input name="password" type="password" class="form-control1"  placeholder="Password">
+                                    </div>
+                                </div>
+                            </div>
+                           
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">Confrim Password</label>
+                                <div class="col-md-8">
+                                    <div class="input-group input-icon right">
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-key"></i>
+                                        </span>
+                                        <input id="confrimPassword" type="password" class="form-control1" placeholder="Confirm Password">
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">Contact No</label>
+                                <div class="col-md-8">
+                                    <div class="input-group input-icon right">
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-envelope-o"></i>
+                                        </span>
+                                        <input name="contact_no" id="contact_no" class="form-control1" type="text" placeholder="Contact No">
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <div class="form-group has-success">
+                                <label class="col-md-2 control-label">Type Of User</label>
+                                <div class="col-md-8">
+                                    <div class="input-group input-icon right">
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-envelope-o"></i>
+                                        </span>
+                                       
+                                                <select name="user_type" class="form-control" id="sel1">
+                                                  <option value="Nil">please select</option>
+                                                  <option value="service">service</option>
+                                                  <option value="chef">chef</option>
+                                                  <option value="accounts">accounts</option>
+                                                  
+                                                </select>
+                                              
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            
+                            <div class="form-group">
+                                    <label for="radio" class="col-sm-2 control-label">Gender</label>
+									<div class="col-sm-8">
+										<div class="radio-inline"><label><input name="gender" value="male" type="radio"> Male</label></div>
+										<div class="radio-inline"><label><input name="gender" value="female"type="radio" >Female</label></div>
+										
+									</div>
+                            </div>
+                            <div class="form-group">
+                                    <label class="col-md-2 control-label">Username</label>
+                                    <div class="col-md-8">
+                                        <div class="input-group">							
+                                            <span class="input-group-addon">
+                                                <i class="fa fa-envelope-o"></i>
+                                            </span>
+                                            <input name="username" type="text" class="form-control1" placeholder="Username">
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                        <label class="col-md-2 control-label">Upload Photo</label>
+                                        <div class="col-md-8">							
+                                                <input name="photo" type="file" class="btn" >
+                                        
+                                        </div>
+                                 </div>
+                                <div class="from-group">
+                                        
+                                    <input type="submit" class="btn btn-success btn-md" value="Register User" style="margin-left: 40%;">
+                                 </div>   
+                                  
+                                
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{%endblock%}
