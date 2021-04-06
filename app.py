@@ -10,12 +10,12 @@ app = Flask(__name__)
 # Config MySQL
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = '04812340484'
+app.config['MYSQL_PASSWORD'] = 'root12345'
 app.config['MYSQL_DB'] = 'qserve'
 app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 
 # init MYSQL
-#mysql = MySQL(app)
+mysql = MySQL(app)
 
 
 #Login Form (Main)
